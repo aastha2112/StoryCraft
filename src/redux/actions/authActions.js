@@ -19,8 +19,8 @@ export const loginFailure = (error) => {
   };
 };
 
-export const logout = () => {
-  return {
-    type: LOGOUT,
-  };
+export const logout = () => (dispatch) => {
+  localStorage.removeItem("storyCraftUser"); // Remove user from local storage
+  dispatch({ type: LOGOUT }); // Dispatch logout action
+  window.location.reload();
 };

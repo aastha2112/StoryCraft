@@ -71,9 +71,11 @@ const Navbar = () => {
             </Flex>
           </NavLink>
           {user ? (
-            <Flex onClick={handleLogout} align="center" gap={1}>
-              <IoPerson /> Logout
-            </Flex>
+            <NavLink onClick={handleLogout} align="center" gap={1}>
+              <Flex align="center" gap={1}>
+                <IoPerson /> Logout
+              </Flex>
+            </NavLink>
           ) : (
             <NavLink to="/login">
               <Flex align="center" gap={1}>
