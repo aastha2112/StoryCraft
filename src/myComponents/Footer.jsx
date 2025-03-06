@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <Flex justify={"center"} p={2}>
+    <Flex justify={"center"} p={2} mt={2}>
       <Text fontWeight={"bold"}>&copy; Aastha, 2025. All Rights Reserved.</Text>
     </Flex>
   );

@@ -31,7 +31,7 @@ const OnGoingStories = () => {
       navigate("/login");
     }
     dispatch(getStory());
-  }, []);
+  }, [dispatch]);
 
   const handleAddContribution = (story, id) => {
     navigate("/contribute", { state: { story, id } });
