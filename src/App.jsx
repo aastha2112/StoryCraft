@@ -10,14 +10,13 @@ import OnGoingStories from "./myComponents/OnGoingStories";
 import WriteContribution from "./myComponents/WriteContribution";
 import Read from "./myComponents/Read";
 import { useSelector } from "react-redux";
-import Footer from "./myComponents/Footer";
 
 const App = () => {
   const user = useSelector(
     (state) =>
       state.auth.user || JSON.parse(localStorage.getItem("storyCraftUser"))
   );
-  const author = user.displayName || user.email;
+  const author = user?.displayName || user.email;
   return (
     <>
       <Navbar />
