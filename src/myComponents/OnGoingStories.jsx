@@ -24,7 +24,6 @@ const OnGoingStories = () => {
     (state) =>
       state.auth.user || JSON.parse(localStorage.getItem("storyCraftUser"))
   );
-  const author = user.displayName || user.email;
 
   useEffect(() => {
     if (!user) {

@@ -29,7 +29,7 @@ const CreateStory = () => {
     (state) =>
       state.auth.user || JSON.parse(localStorage.getItem("storyCraftUser"))
   );
-  const author = user.displayName || user.email;
+  const author = user?.displayName || user?.email || "User";
   useEffect(() => {
     if (!user) {
       alert("You need to login first!");

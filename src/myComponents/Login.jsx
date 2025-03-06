@@ -123,7 +123,7 @@ const Login = () => {
           // logout button
           <Box textAlign={"center"} p={4}>
             <Heading fontSize={"2xl"}>
-              Hi, {user.displayName || user.email}!
+              Hi, {user?.displayName || user?.email || "User"}!
             </Heading>
             <Text mt={5} fontWeight={"bold"} fontSize={"md"}>
               Your creative journey doesn't have to end here. Come back anytime

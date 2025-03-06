@@ -13,7 +13,6 @@ const Read = () => {
     (state) =>
       state.auth.user || JSON.parse(localStorage.getItem("storyCraftUser"))
   );
-  const author = user?.displayName || user?.email;
 
   if (!story) {
     return <Text>No story data available.</Text>;

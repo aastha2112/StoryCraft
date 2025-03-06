@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Box, Button, Text, Heading, Textarea, VStack } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,8 +13,14 @@ const WriteContribution = () => {
       state.auth.user || JSON.parse(localStorage.getItem("storyCraftUser"))
   );
   const author = user.displayName || user.email;
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      alert("You need to login first!");
+      navigate("/login");
+    }
+  }, []);
   const dispatch = useDispatch();
   const [showContributions, setShowContributions] = useState(false);
   const [contribution, setContribution] = useState("");
