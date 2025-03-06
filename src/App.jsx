@@ -9,8 +9,15 @@ import CreateStory from "./myComponents/CreateStory";
 import OnGoingStories from "./myComponents/OnGoingStories";
 import WriteContribution from "./myComponents/WriteContribution";
 import Read from "./myComponents/Read";
+import { useSelector } from "react-redux";
+import Footer from "./myComponents/Footer";
 
 const App = () => {
+  const user = useSelector(
+    (state) =>
+      state.auth.user || JSON.parse(localStorage.getItem("storyCraftUser"))
+  );
+  const author = user.displayName || user.email;
   return (
     <>
       <Navbar />
@@ -19,8 +26,38 @@ const App = () => {
 
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/createStory" element={<CreateStory />} />
-        <Route path="/ongoingStories" element={<OnGoingStories />} />
+        <Route
+          path="/createStory"
+          element={
+            <>
+              <Heading
+                fontSize={{ base: "3xl", md: "3xl", lg: "3xl" }}
+                px={3}
+                py={6}
+                fontWeight="bold"
+              >
+                Hello, {author}
+              </Heading>
+              <CreateStory />
+            </>
+          }
+        />
+        <Route
+          path="/ongoingStories"
+          element={
+            <>
+              <Heading
+                fontSize={{ base: "3xl", md: "3xl", lg: "3xl" }}
+                px={3}
+                pt={6}
+                fontWeight="bold"
+              >
+                Hello, {author}
+              </Heading>
+              <OnGoingStories />
+            </>
+          }
+        />
         <Route path="/contribute" element={<WriteContribution />} />
         <Route path="/read" element={<Read />} />
       </Routes>

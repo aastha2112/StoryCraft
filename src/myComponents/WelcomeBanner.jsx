@@ -100,6 +100,7 @@ const WelcomeBanner = () => {
 
         {/* Button for small & medium screens */}
         <Button
+          onClick={() => navigate("/ongoingStories")}
           color={"#ec4a4a"}
           backgroundColor={"black"}
           mt={5}

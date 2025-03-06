@@ -33,12 +33,25 @@ const FinishedStories = () => {
             <Text fontSize="md" color="gray.600" mb={4}>
               Created by: {story.createdBy}
             </Text>
-            <Text fontSize="md" mb={4}>
+            {/* 
+            
+            */}
+
+            <VStack align="start">
+              {story.contributions?.slice(0, 1).map((contribution, index) => (
+                <Text key={index} fontSize="md" color="gray.800">
+                  {contribution.sentence}
+                </Text>
+              ))}
+            </VStack>
+            {/*  */}
+            {/* <Text fontSize="md" mb={4}>
               {story.contributions.map((c) => c.sentence).join(" ")}
-            </Text>
+            </Text> */}
             <Flex gap={4} justifyContent="center">
               <Button
                 bg="red.500"
+                mt={3}
                 color="white"
                 _hover={{ bg: "red.600" }}
                 onClick={() => navigate(`/read`, { state: { story, id } })}

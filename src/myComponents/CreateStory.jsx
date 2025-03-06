@@ -30,7 +30,6 @@ const CreateStory = () => {
       state.auth.user || JSON.parse(localStorage.getItem("storyCraftUser"))
   );
   const author = user.displayName || user.email;
-  console.log(author, "createStory");
   useEffect(() => {
     if (!user) {
       alert("You need to login first!");
@@ -53,7 +52,7 @@ const CreateStory = () => {
     <Flex
       gap={4}
       direction={{ base: "column", lg: "row" }}
-      maxW={{ base: "95%", md: "800px" }}
+      maxW={{ base: "95%", md: "800px", lg: "80%" }}
       mx="auto"
       mt={10}
       p={6}
@@ -74,13 +73,13 @@ const CreateStory = () => {
       >
         <Image
           src={loginPng}
-          h={{ base: "30vh", md: "35vh", lg: "60vh" }}
+          h={{ base: "25vh", md: "35vh", lg: "60vh" }}
           mb={{ base: 4, lg: 0 }}
           mx="auto"
         />
       </MotionBox>
 
-      <Box w={{ base: "full", lg: "50%" }}>
+      <Box w={{ base: "full", lg: "40%" }}>
         <Heading
           as="h2"
           fontSize="2xl"

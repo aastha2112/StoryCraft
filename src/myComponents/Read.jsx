@@ -24,44 +24,54 @@ const Read = () => {
     : "No contributions yet.";
 
   return (
-    <VStack spacing={6} p={6} mt={10} w={{ base: "full", md: "60%" }}>
+    <>
       <Button
         onClick={() => navigate(-1)}
-        mb={5}
         fontSize="xl"
         p={3}
-        bg="black"
+        m={3}
+        rounded={"full"}
+        bg="blackAlpha.300"
         color="white"
         _hover={{ bg: "red.600" }}
         alignSelf="start"
       >
-        {"< Back"}
+        {"< "}
       </Button>
 
-      <Box w="full" p={6} bg="gray.50" borderRadius="lg" boxShadow="md">
-        <Heading as="h2" fontSize="2xl" color="red.500" textAlign="center">
-          {story.title}
-        </Heading>
-        <Text fontSize="md" color="gray.600" textAlign="center">
-          Created by: {story.createdBy}
-        </Text>
-      </Box>
+      <VStack spacing={6} p={6} mx={"auto"} w={{ base: "full", md: "60%" }}>
+        <Box w="full" p={6} bg="gray.50" borderRadius="lg" boxShadow="md">
+          <Heading as="h2" fontSize="2xl" color="red.500" textAlign="center">
+            {story.title}
+          </Heading>
+          <Text fontSize="md" color="gray.600" textAlign="center">
+            Created by: {story.createdBy}
+          </Text>
+        </Box>
 
-      <Box w="full" p={6} bg="white" borderRadius="lg" boxShadow="md">
-        <Text fontSize="lg" color="black" textAlign="justify" lineHeight="1.8">
-          {combinedStory}
-        </Text>
-      </Box>
+        <Box w="full" p={6} bg="white" borderRadius="lg" boxShadow="md">
+          <Text
+            fontSize="lg"
+            color="black"
+            textAlign="justify"
+            lineHeight="1.8"
+          >
+            {combinedStory}
+          </Text>
+        </Box>
 
-      <Button
-        bg="red.500"
-        color="white"
-        _hover={{ bg: "red.600" }}
-        onClick={() => navigate(-1)}
-      >
-        Go Back
-      </Button>
-    </VStack>
+        <Button
+          bg="red.500"
+          color="white"
+          mt={3}
+          mb={10}
+          _hover={{ bg: "red.600" }}
+          onClick={() => navigate(-1)}
+        >
+          Go Back
+        </Button>
+      </VStack>
+    </>
   );
 };
 

@@ -31,84 +31,100 @@ const WriteContribution = () => {
   };
 
   return (
-    <VStack
-      spacing={6}
-      p={6}
-      mt={15}
-      w={{ base: "full", md: "auto", lg: "50%" }}
-    >
+    <>
       <Button
         onClick={() => navigate(-1)}
-        mb={5}
+        m={3}
         fontSize="2xl"
         p={0}
-        bg="black"
+        rounded={"full"}
+        bg="blackAlpha.300"
         color="white"
         _hover={{ bg: "red.600" }}
         alignSelf={"start"}
       >
         {"<"}
       </Button>
-      <Box
-        w="full"
+      <VStack
+        spacing={6}
         p={6}
-        bg="gray.50"
-        borderRadius="lg"
-        boxShadow="md"
-        mb={6}
-        mt={20}
+        mt={5}
+        mx={"auto"}
+        w={{ base: "full", md: "auto", lg: "50%" }}
       >
-        <Heading as="h2" fontSize="xl" color="red.500">
-          {story.title}
-        </Heading>
-        <Text fontSize="md" color="gray.600">
-          Created by: {story.createdBy}
-        </Text>
-        <Text fontSize="md" mt={4}>
-          Latest Contribution:{" "}
-          {story.contributions?.[story.contributions.length - 1]?.sentence ||
-            "No contributions yet."}
-        </Text>
-      </Box>
+        <Box
+          w="full"
+          p={6}
+          bg="gray.50"
+          borderRadius="lg"
+          boxShadow="md"
+          mb={6}
+          mt={20}
+        >
+          <Heading as="h2" fontSize="xl" color="red.500">
+            {story.title}
+          </Heading>
+          <Text fontSize="md" color="gray.600">
+            Created by: {story.createdBy}
+          </Text>
+          <Text fontSize="md" mt={4}>
+            Latest Contribution:{" "}
+            {story.contributions?.[story.contributions.length - 1]?.sentence ||
+              "No contributions yet."}
+          </Text>
+        </Box>
 
-      <Textarea
-        placeholder="Write your contribution..."
-        h={20}
-        maxLength={150}
-        mb={4}
-        value={contribution}
-        onChange={(e) => setContribution(e.target.value)}
-      />
+        <Textarea
+          placeholder="Write your contribution..."
+          h={20}
+          maxLength={150}
+          mb={4}
+          value={contribution}
+          onChange={(e) => setContribution(e.target.value)}
+        />
 
-      <Button
-        bg="red.500"
-        color="white"
-        _hover={{ bg: "red.600" }}
-        onClick={() => handleContribution(id, story, contribution, author)}
-      >
-        Submit Contribution
-      </Button>
-      <Button
-        bg="black"
-        color="white"
-        _hover={{ bg: "gray.800" }}
-        onClick={() => setShowContributions(!showContributions)}
-      >
-        {showContributions ? "Hide" : "Show"} all Contributions
-      </Button>
+        <Button
+          bg="red.500"
+          color="white"
+          _hover={{ bg: "red.600" }}
+          onClick={() => {
+            if (story.contributions.length == 10) {
+              console.log(story.contributions.length, "length");
+              alert("Story Completed Already!");
+            } else {
+              handleContribution(id, story, contribution, author);
+            }
+          }}
+        >
+          Submit Contribution
+        </Button>
+        <Button
+          bg="black"
+          color="white"
+          _hover={{ bg: "gray.800" }}
+          onClick={() => setShowContributions(!showContributions)}
+        >
+          {showContributions ? "Hide" : "Show"} all Contributions
+        </Button>
 
-      {showContributions && (
-        <>
-          {story.contributions.map((contribution, index) => {
-            return (
-              <Text fontSize="md" mt={4} key={index}>
-                {contribution.sentence}
-              </Text>
-            );
-          })}
-        </>
-      )}
-    </VStack>
+        {showContributions && (
+          <Box mb={12}>
+            {story.contributions.map((contribution, index) => {
+              return (
+                <Box borderRadius="lg" boxShadow="md" p={3} mt={4}>
+                  <Text fontSize="md" key={index}>
+                    {contribution.sentence}
+                  </Text>
+                  <Text color={"blue.500"}>
+                    By {contribution.contributedBy}
+                  </Text>
+                </Box>
+              );
+            })}
+          </Box>
+        )}
+      </VStack>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Flex, Heading, Button } from "@chakra-ui/react";
+import { Flex, Heading, Button, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IoPerson } from "react-icons/io5";
@@ -16,9 +16,16 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    signOut(auth).then(() => {
-      dispatch(logout());
-    });
+    let confirmation = confirm(
+      "Do you really want to go? Your story isn't over yet. 😢💔"
+    );
+    if (confirmation) {
+      signOut(auth).then(() => {
+        dispatch(logout());
+      });
+    } else {
+      return;
+    }
   };
 
   return (
@@ -31,8 +38,28 @@ const Navbar = () => {
         display={{ base: "none", md: "flex" }}
       >
         <NavLink to="/">
-          <Heading fontSize="3xl" p={2} fontWeight="bold">
+          {/* <Heading
+            fontSize="3xl"
+            p={2}
+            fontWeight="bold"
+            _hover={{ color: "inherit" }}
+          >
             StoryCraft
+          </Heading> */}
+
+          <Heading
+            fontSize="3xl"
+            fontWeight="bold"
+            p={2}
+            color="red.500"
+            transition="all 0.3s ease-in-out"
+            _hover={{ color: "red.600" }}
+            textShadow="2px 2px 4px rgba(0,0,0,0.3)"
+          >
+            Story
+            <Text as="span" color="black">
+              Craft
+            </Text>
           </Heading>
         </NavLink>
         <Flex justify="space-evenly" w={{ base: "full", md: "50%", lg: "30%" }}>
@@ -66,6 +93,7 @@ const Navbar = () => {
         bg="white"
         boxShadow="0 -2px 10px rgba(0, 0, 0, 0.1)"
         p={3}
+        zIndex={1}
         justify="space-around"
         alignItems="center"
         display={{ base: "flex", md: "none" }}
