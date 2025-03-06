@@ -16,7 +16,6 @@ const firebaseConfig = {
 
 export const baseUrl = import.meta.env.VITE_STORYCRAFT_BASE_URL;
 
-console.log({ firebaseConfig }, baseUrl, "base url");
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
